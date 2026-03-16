@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Capacitación y Atención Psicológica | Apodaca, N.L.</title>
+    <!-- Tailwind CSS para el diseño -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital@0;1&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        primary: '#1e3a8a', // Azul oscuro (Confianza)
+                        secondary: '#0d9488', // Teal (Salud, bienestar)
+                        accent: '#f59e0b', // Ambar (Energía)
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos adicionales personalizados */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .dropdown-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .dropdown-content.show {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.2s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .psyche-bg {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .psyche-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50vw;
+            color: rgba(30, 58, 138, 0.04);
+            font-family: 'Times New Roman', serif;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50">
+
+    <!-- Navegación -->
+    <nav class="glass-nav fixed w-full z-50 shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-brain text-primary text-2xl mr-2"></i>
+                    <span class="font-serif font-bold text-xl text-primary">Psico</span>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-600 hover:text-primary font-medium transition-colors">Inicio</a>
+                    
+                    <!-- Dropdown Capacitación -->
+                    <div class="relative group">
+                        <button onclick="toggleDropdown('cap-menu', event)" class="flex items-center text-gray-600 hover:text-primary font-medium transition-colors focus:outline-none">
+                            Desarrollo Organizacional <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div id="cap-menu" class="dropdown-content absolute left-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+                            <a href="#cap-coaching" class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-secondary">Cursos de Coaching</a>
+                            <a href="#cap-equipo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-secondary">Trabajo en Equipo</a>
+                            <a href="#cap-liderazgo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-secondary">Liderazgo</a>
+                            <a href="#cap-instructores" class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-secondary">Formación de Instructores</a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a href="#cap-tana" class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-secondary">Tanatología</a>
+                            <a href="#cap-tcc" class="block px-4 py-2 text-sm text-gray-700 hover:bg-teal-50 hover:text-secondary">Terapia Cognitivo Conductual</a>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Psicología -->
+                    <div class="relative group">
+                        <button onclick="toggleDropdown('psi-menu', event)" class="flex items-center text-gray-600 hover:text-primary font-medium transition-colors focus:outline-none">
+                            Atención Psicológica <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div id="psi-menu" class="dropdown-content absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+                            <a href="#psi-depresion" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary">Depresión</a>
+                            <a href="#psi-ansiedad" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary">Ansiedad</a>
+                            <a href="#psi-pareja" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary">Relación de Pareja</a>
+                            <a href="#psi-tanatologia" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary">Tanatología</a>
+                            <a href="#psi-sexologia" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary">Sexología</a>
+                        </div>
+                    </div>
+
+                    <a href="#contacto" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-800 transition shadow-md">Contacto</a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-primary focus:outline-none text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md">Inicio</a>
+                <div class="px-3 py-2 text-base font-medium text-primary border-t border-gray-100 mt-2 pt-2">Desarrollo Organizacional</div>
+                <a href="#capacitacion" class="block px-6 py-1 text-sm text-gray-500 hover:text-secondary">Ver todos los servicios</a>
+                <div class="px-3 py-2 text-base font-medium text-primary border-t border-gray-100 mt-2 pt-2">Atención Psicológica</div>
+                <a href="#psicologia" class="block px-6 py-1 text-sm text-gray-500 hover:text-secondary">Ver todos los servicios</a>
+                <a href="#contacto" class="block px-3 py-2 text-base font-medium text-white bg-primary rounded-md mt-4 text-center">Agendar Cita</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Inicio / Hero Section -->
+    <header id="inicio" class="psyche-bg min-h-screen flex items-center pt-20">
+        <!-- Símbolo de Psique de Fondo -->
+        <div class="psyche-symbol">Ψ</div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 md:py-24">
+            <div class="text-center max-w-4xl mx-auto">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-primary font-semibold text-sm mb-4">
+                    <i class="fa-solid fa-location-dot mr-1"></i> Apodaca, Nuevo León
+                </span>
+                <h1 class="text-4xl md:text-6xl font-serif font-bold text-gray-900 leading-tight mb-6">
+                    Potenciamos el talento, <br><span class="text-secondary">sanamos la mente.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 font-light">
+                    Servicios profesionales de <strong class="text-primary font-semibold">Capacitación y Desarrollo Organizacional</strong> y <strong class="text-secondary font-semibold">Atención Psicológica</strong>. 
+                    Diseñados para individuos y empresas.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
+                    <div class="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 text-gray-700">
+                        <i class="fa-solid fa-laptop text-secondary text-xl mr-3"></i> Modalidad Online
+                    </div>
+                    <div class="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100 text-gray-700">
+                        <i class="fa-solid fa-users text-primary text-xl mr-3"></i> Sesiones Presenciales
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#capacitacion" class="bg-primary text-white px-8 py-3 rounded-full hover:bg-blue-800 transition font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Ver Capacitaciones
+                    </a>
+                    <a href="#psicologia" class="bg-white text-primary border-2 border-primary px-8 py-3 rounded-full hover:bg-blue-50 transition font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Servicios Psicológicos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN: CAPACITACIÓN Y DESARROLLO ORGANIZACIONAL -->
+    <section id="capacitacion" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Capacitación y Desarrollo Organizacional</h2>
+                <div class="w-24 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Impulsa el crecimiento de tu equipo y mejora el entorno laboral con nuestros programas especializados, disponibles presencialmente en Apodaca o en línea.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div id="cap-coaching" class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cursos de Coaching" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Cursos de Coaching</h3>
+                        <p class="text-gray-600 mb-4">Desarrolla habilidades directivas y personales para alcanzar el máximo potencial en tu entorno profesional y personal.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div id="cap-equipo" class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Trabajo en Equipo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Trabajo en Equipo</h3>
+                        <p class="text-gray-600 mb-4">Dinámicas y estrategias para fomentar la sinergia, la comunicación asertiva y la colaboración efectiva entre colaboradores.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div id="cap-liderazgo" class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Liderazgo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Liderazgo</h3>
+                        <p class="text-gray-600 mb-4">Formación de líderes transformacionales capaces de guiar, motivar e inspirar a sus equipos hacia el éxito organizacional.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div id="cap-instructores" class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Formación de Instructores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Formación de Instructores</h3>
+                        <p class="text-gray-600 mb-4">Certificación y herramientas metodológicas para capacitar a otros con excelencia, pedagogía y claridad.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Terapia Cognitivo Conductual -->
+                <div id="cap-tcc" class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1573497019236-17f8177b81e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Terapia Cognitivo Conductual" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Terapia Cognitivo Conductual</h3>
+                        <p class="text-gray-600 mb-4">Reestructuración de hábitos y pensamientos para alcanzar un mayor bienestar personal y emocional.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Tanatología -->
+                <div id="cap-tana" class="bg-gray-50 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tanatología" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-2">Tanatología</h3>
+                        <p class="text-gray-600 mb-4">Acompañamiento compasivo en el manejo del duelo y pérdidas personales, brindando soporte emocional integral.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: ATENCIÓN PSICOLÓGICA -->
+    <section id="psicologia" class="py-20 bg-teal-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Servicios de Atención Psicológica</h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Acompañamiento profesional y empático para tu salud mental. Agenda tu cita presencial en nuestras instalaciones en Apodaca o por videollamada.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Servicio 1 -->
+                <div id="psi-depresion" class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-t-4 border-blue-400">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-cloud-sun text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Depresión</h3>
+                    <p class="text-gray-600">Tratamiento especializado para superar episodios depresivos, recuperar la motivación, la energía y reencontrar el sentido y la alegría en tu vida diaria.</p>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div id="psi-ansiedad" class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-t-4 border-teal-400">
+                    <div class="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-wind text-teal-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ansiedad</h3>
+                    <p class="text-gray-600">Aprende herramientas prácticas y terapéuticas para manejar el estrés, ataques de pánico y la preocupación excesiva. Recupera tu tranquilidad.</p>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div id="psi-pareja" class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-t-4 border-pink-400">
+                    <div class="w-14 h-14 bg-pink-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-hands-holding text-pink-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Relación de Pareja</h3>
+                    <p class="text-gray-600 text-sm">Mejora la comunicación, resuelve conflictos estancados y fortalece el vínculo afectivo a través de un espacio seguro y neutral para ambos.</p>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div id="psi-tanatologia" class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-t-4 border-purple-400">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-dove text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Tanatología</h3>
+                    <p class="text-gray-600">Acompañamiento respetuoso y humano en procesos de duelo, pérdidas significativas, enfermedades terminales y cierres de ciclos de vida.</p>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div id="psi-sexologia" class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-t-4 border-red-400">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-fire-flame-curved text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Sexología</h3>
+                    <p class="text-gray-600">Asesoramiento profesional para abordar disfunciones, mejorar la intimidad, educación sexual y explorar la sexualidad de forma plena, sana y sin tabúes.</p>
+                </div>
+
+                <!-- Imagen representativa -->
+                <div class="rounded-2xl overflow-hidden shadow-sm h-full hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pareja tomados de la mano" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modalidad Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-8">Atención a tu medida</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12">
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/20 flex-1 w-full max-w-sm">
+                    <i class="fa-solid fa-building text-4xl mb-4 text-accent"></i>
+                    <h3 class="text-2xl font-bold mb-2">Presencial</h3>
+                    <p class="text-blue-100 mb-4">Te recibimos en nuestras instalaciones cómodas y privadas ubicadas en <strong>Apodaca, Nuevo León</strong>.</p>
+                </div>
+                <div class="text-2xl font-bold text-blue-300">Ó</div>
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/20 flex-1 w-full max-w-sm">
+                    <i class="fa-solid fa-video text-4xl mb-4 text-accent"></i>
+                    <h3 class="text-2xl font-bold mb-2">Online</h3>
+                    <p class="text-blue-100 mb-4">Toma tus sesiones o capacitaciones desde la comodidad de tu hogar u oficina en cualquier parte del mundo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contacto -->
+    <footer id="contacto" class="bg-gray-900 text-gray-300 py-12 border-t-4 border-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-brain text-secondary text-2xl mr-2"></i>
+                        <span class="font-serif font-bold text-xl text-white">Psico<span class="text-secondary">Desarrollo</span></span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-4">Transformando el bienestar individual y el desarrollo del talento organizacional con profesionalismo y empatía.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-4 border-b border-gray-700 pb-2">Ubicación</h4>
+                    <p class="flex items-start text-sm mb-2">
+                        <i class="fa-solid fa-location-dot mt-1 mr-3 text-secondary"></i>
+                        <span>Apodaca, Nuevo León, México.<br>Atención previa cita.</span>
+                    </p>
+                    <p class="flex items-center text-sm mb-2">
+                        <i class="fa-solid fa-globe mr-3 text-secondary"></i>
+                        <span>Servicios Presenciales y Online</span>
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-4 border-b border-gray-700 pb-2">Contacto</h4>
+                    <a href="https://forms.gle/2kbhmhXjievK2F9Y8" target="_blank" rel="noopener noreferrer" class="inline-block bg-secondary text-white px-6 py-2 rounded-lg hover:bg-teal-500 transition shadow text-sm font-semibold w-full sm:w-auto text-center">
+                        Agendar Cita / Solicitar Info
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-xs text-gray-500">
+                <p>&copy; 2024 PsicoDesarrollo. Todos los derechos reservados. | Apodaca, N.L.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts para interacciones -->
+    <script>
+        // Función para desplegar submenús al hacer clic
+        function toggleDropdown(menuId, event) {
+            event.stopPropagation(); // Evita que el evento burbujee al window
+            
+            // Cerrar otros menús si están abiertos
+            const allMenus = document.querySelectorAll('.dropdown-content');
+            allMenus.forEach(menu => {
+                if (menu.id !== menuId && menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Alternar el menú actual
+            const currentMenu = document.getElementById(menuId);
+            currentMenu.classList.toggle('show');
+        }
+
+        // Cerrar submenús al hacer clic en cualquier otra parte de la pantalla
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-content') && !event.target.closest('button')) {
+                const menus = document.querySelectorAll('.dropdown-content');
+                menus.forEach(menu => {
+                    if (menu.classList.contains('show')) {
+                        menu.classList.remove('show');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
